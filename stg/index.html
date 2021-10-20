@@ -1,0 +1,70 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        html {
+            background-color: coral;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .col {
+            flex: 1;
+        }
+
+        .eg-embed-iframe {
+            border: none;
+            width: 100%;
+        }
+    </style>
+    <div class="row">
+        <div class="col">
+            <div class="eg-embed-3e6Ye1Yub"></div>
+        </div>
+        <div class="col">
+            <div class="eg-embed-3e6Ye1Yub"></div>
+        </div>
+        <div class="col">
+            <div class="eg-embed-3e6Ye1Yub"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        (function () {
+            var url = "iframe.html", id = "3e6Ye1Yub";
+
+            var embeds = document.querySelectorAll(`.eg-embed-${id}`);
+            var activeEmbeds = [];
+
+            window.addEventListener('message', msg => {
+                if(msg.data.iframeHeight && activeEmbeds.length){
+                    activeEmbeds.forEach(embed => {
+                        if(msg.source == embed.contentWindow) {
+                            embed.style.height = msg.data.iframeHeight;
+                        }
+                    });
+                }
+            });
+
+            if (embeds.length) {
+                embeds.forEach(embed => {
+                    var iframe = document.createElement("iframe");
+                    iframe.setAttribute("src", url);
+                    iframe.setAttribute("class", 'eg-embed-iframe');
+                    activeEmbeds.push(iframe);
+                    embed.appendChild(iframe);
+                });
+            }
+        })();
+    </script>
+</body>
+
+</html>

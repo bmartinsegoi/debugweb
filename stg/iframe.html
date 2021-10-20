@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        html {
+            background-color: rgb(80, 255, 109);
+        }
+    </style>
+    <button onclick="add()">teste</button>
+    <div id="fakeDiv"></div>
+    <script type="text/javascript">
+        const wtv = document.getElementById('fakeDiv')
+
+        function add() {
+            const newLine = document.createElement('div');
+            newLine.setAttribute('style', 'width:100%;background-color:#000;height:50px;')
+            wtv.append(newLine);
+        }
+        // create an Observer instance
+        const resizeObserver = new ResizeObserver(entries => {
+            top.postMessage({
+                iframeHeight: document.body.scrollHeight
+            });
+        });
+
+        // start observing a DOM node
+        resizeObserver.observe(document.body);
+    </script>
+</body>
+
+</html>
