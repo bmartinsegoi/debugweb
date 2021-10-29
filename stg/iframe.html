@@ -9,29 +9,37 @@
 
 <body>
     <style>
-        html {
-            background-color: rgb(80, 255, 109);
+        html{
+            background-color: cornflowerblue;
         }
     </style>
-    <button onclick="add()">teste</button>
+    <button onclick="add()">add</button>
     <div id="fakeDiv"></div>
     <script type="text/javascript">
         const wtv = document.getElementById('fakeDiv')
 
         function add() {
             const newLine = document.createElement('div');
-            newLine.setAttribute('style', 'width:100%;background-color:#000;height:50px;')
+            newLine.setAttribute('style', 'width:100%;');
+            newLine.innerHTML =
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet ipsum non metus finibus maximus. Quisque rutrum elementum tempus. Curabitur porta diam ut velit ultrices, eget facilisis libero pellentesque. Integer id turpis semper metus semper venenatis ac et eros. Nulla volutpat risus vitae ligula congue, ac blandit ex blandit. Sed nec efficitur sapien, ac dignissim velit.';
             wtv.append(newLine);
         }
+
         // create an Observer instance
         const resizeObserver = new ResizeObserver(entries => {
-            top.postMessage({
-                iframeHeight: document.body.scrollHeight
-            });
+            updateEmbedHeight();
         });
-
+        const holder = document.getElementById('fakeDiv');
         // start observing a DOM node
-        resizeObserver.observe(document.body);
+        resizeObserver.observe(holder);
+
+        function updateEmbedHeight() {
+            const height = document.body.offsetHeight + 20;
+            top.postMessage({
+                egEmbedHeight: height
+            });
+        }
     </script>
 </body>
 
