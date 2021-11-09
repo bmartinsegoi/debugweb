@@ -30,11 +30,12 @@
         const resizeObserver = new ResizeObserver(entries => {
             updateEmbedHeight();
         });
+        window.addEventListener('resize', updateEmbedHeight)
         const holder = document.getElementById('fakeDiv');
         // start observing a DOM node
         resizeObserver.observe(holder);
-
         function updateEmbedHeight() {
+            console.log(document);
             const height = document.body.offsetHeight + 20;
             top.postMessage({
                 egEmbedHeight: height
